@@ -41,6 +41,18 @@
         <source-file src="src/android/MusicControlsNotificationKiller.java" target-dir="src/com/homerours/musiccontrols" />
         <source-file src="src/android/MusicControlsInfos.java" target-dir="src/com/homerours/musiccontrols" />
         <source-file src="src/android/KillBinder.java" target-dir="src/com/homerours/musiccontrols" />
+		
+		<source-file src="res/layout/android/notification.xml" target-dir="res/layout" />
+		<source-file src="res/layout/android/notification_big.xml" target-dir="res/layout" />
+		<source-file src="res/layout/android/notification_big_singletrack.xml" target-dir="res/layout" />
+		<source-file src="res/layout/android/notification_singletrack.xml" target-dir="res/layout" />
+		
+		<source-file src="res/drawable-hdpi/notification_icon.png" target-dir="res/drawable-hdpi" />
+		<source-file src="res/drawable-ldpi/notification_icon.png" target-dir="res/drawable-ldpi" />
+		<source-file src="res/drawable-mdpi/notification_icon.png" target-dir="res/drawable-mdpi" />
+		<source-file src="res/drawable-xxhdpi/notification_icon.png" target-dir="res/drawable-xxhdpi" />
+		
+		
     </platform>
 
     <!-- windows -->

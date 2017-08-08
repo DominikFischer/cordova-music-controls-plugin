@@ -10,16 +10,20 @@ import java.io.File;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
+
+import android.os.Process;
 import android.util.Base64;
 
 import android.util.Log;
-import android.R;
+//import android.R;
+import com.rohdeschwarz.podcast.R;
 import android.content.Context;
 import android.app.Activity;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.widget.RemoteViews;
 import android.os.Bundle;
 import android.os.Build;
 import android.graphics.BitmapFactory;
@@ -130,6 +134,22 @@ public class MusicControlsNotification {
 		Context context = cordovaActivity;
 		Notification.Builder builder = new Notification.Builder(context);
 
+		RemoteViews notificationView = new RemoteViews(context.getPackageName(), R.layout.notification);
+		RemoteViews notificationBigView = new RemoteViews(context.getPackageName(), R.layout.notification_big);
+		notificationView.setImageViewBitmap(R.id.albumArt, this.bitmapCover);
+		notificationView.setTextViewText(R.id.title, infos.track);
+		notificationView.setTextViewText(R.id.text, infos.artist);
+		notificationBigView.setImageViewBitmap(R.id.albumArt, this.bitmapCover);
+		notificationBigView.setTextViewText(R.id.title, infos.track);
+		notificationBigView.setTextViewText(R.id.text, infos.artist);
+		notificationBigView.setTextViewText(R.id.album, infos.album);
+
+		builder.setContent(notificationView);
+
+		Notification myNotification = builder.build();
+		myNotification.bigContentView = notificationBigView;
+
+
 		//Configure builder
 		builder.setContentTitle(infos.track);
 		if (!infos.artist.isEmpty()){
@@ -157,11 +177,14 @@ public class MusicControlsNotification {
 		}
 
 		//Set SmallIcon
-		if (infos.isPlaying){
-			builder.setSmallIcon(R.drawable.ic_media_play);
-		} else {
-			builder.setSmallIcon(R.drawable.ic_media_pause);
-		}
+		builder.setSmallIcon(R.drawable.notification_icon);
+//		if (infos.isPlaying){
+//			//builder.setSmallIcon(R.drawable.ic_media_play);
+//			builder.setSmallIcon(R.drawable.play_xhdpi);
+//		} else {
+//			//builder.setSmallIcon(R.drawable.ic_media_pause);
+//			builder.setSmallIcon(R.drawable.pause_xhdpi);
+		//}
 
 		//Set LargeIcon
 		if (!infos.cover.isEmpty() && this.bitmapCover != null){
@@ -183,6 +206,8 @@ public class MusicControlsNotification {
 			Intent previousIntent = new Intent("music-controls-previous");
 			PendingIntent previousPendingIntent = PendingIntent.getBroadcast(context, 1, previousIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_rew, "", previousPendingIntent);
+			notificationView.setOnClickPendingIntent(R.id.prev, previousPendingIntent);
+			notificationBigView.setOnClickPendingIntent(R.id.prev, previousPendingIntent);
 		}
 		if (infos.isPlaying){
 			/* Pause  */
@@ -190,12 +215,20 @@ public class MusicControlsNotification {
 			Intent pauseIntent = new Intent("music-controls-pause");
 			PendingIntent pausePendingIntent = PendingIntent.getBroadcast(context, 1, pauseIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_pause, "", pausePendingIntent);
+			notificationView.setImageViewResource(R.id.play_pause, R.drawable.pause_xhdpi);
+			notificationView.setOnClickPendingIntent(R.id.play_pause, pausePendingIntent);
+			notificationBigView.setImageViewResource(R.id.play_pause, R.drawable.pause_xhdpi);
+			notificationBigView.setOnClickPendingIntent(R.id.play_pause, pausePendingIntent);
 		} else {
 			/* Play  */
 			nbControls++;
 			Intent playIntent = new Intent("music-controls-play");
 			PendingIntent playPendingIntent = PendingIntent.getBroadcast(context, 1, playIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_play, "", playPendingIntent);
+			notificationView.setImageViewResource(R.id.play_pause, R.drawable.play_xhdpi);
+			notificationView.setOnClickPendingIntent(R.id.play_pause, playPendingIntent);
+			notificationBigView.setImageViewResource(R.id.play_pause, R.drawable.play_xhdpi);
+			notificationBigView.setOnClickPendingIntent(R.id.play_pause, playPendingIntent);
 		}
 		/* Next */
 		if (infos.hasNext){
@@ -203,14 +236,18 @@ public class MusicControlsNotification {
 			Intent nextIntent = new Intent("music-controls-next");
 			PendingIntent nextPendingIntent = PendingIntent.getBroadcast(context, 1, nextIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_ff, "", nextPendingIntent);
+			notificationView.setOnClickPendingIntent(R.id.next, nextPendingIntent);
+			notificationBigView.setOnClickPendingIntent(R.id.next, nextPendingIntent);
 		}
 		/* Close */
-		if (infos.hasClose){
+		//if (infos.hasClose){
 			nbControls++;
 			Intent destroyIntent = new Intent("music-controls-destroy");
 			PendingIntent destroyPendingIntent = PendingIntent.getBroadcast(context, 1, destroyIntent, 0);
 			builder.addAction(android.R.drawable.ic_menu_close_clear_cancel, "", destroyPendingIntent);
-		}
+			notificationView.setOnClickPendingIntent(R.id.close, destroyPendingIntent);
+			notificationBigView.setOnClickPendingIntent(R.id.close, destroyPendingIntent);
+		//}
 
 		//If 5.0 >= use MediaStyle
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){

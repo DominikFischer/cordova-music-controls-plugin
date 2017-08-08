@@ -3,6 +3,8 @@ package com.homerours.musiccontrols;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 
+import android.os.Debug;
+import android.os.Process;
 import android.util.Log;
 import android.app.Activity;
 import android.content.Context;
@@ -33,10 +35,9 @@ public class MusicControlsBroadcastReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-
 		if (this.cb != null){
 			String message = intent.getAction();
-
+			//Log.d("Notification","Button clicked: " + message);
 			if(message.equals(Intent.ACTION_HEADSET_PLUG)){
 				// Headphone plug/unplug
 				int state = intent.getIntExtra("state", -1);
@@ -66,6 +67,7 @@ public class MusicControlsBroadcastReceiver extends BroadcastReceiver {
 				this.cb.success("music-controls-destroy");
 				this.cb = null;
 				this.musicControls.destroyPlayerNotification();
+				Process.killProcess(Process.myPid());
 			} else {
 				this.cb.success(message);
 				this.cb = null;
