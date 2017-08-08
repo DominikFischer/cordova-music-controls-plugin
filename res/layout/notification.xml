@@ -67,24 +67,24 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        android:background="@drawable/button_style"
         android:src="@android:drawable/ic_media_rew" />
+        <!--android:background="@drawable/button_style"-->
 
     <ImageButton
         android:id="@+id/play_pause"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        android:background="@drawable/button_style"
-        android:src="@drawable/play_xhdpi" />
+        android:src="@android:drawable/ic_media_play" />
+    <!--android:background="@drawable/button_style"-->
 
     <ImageButton
         android:id="@+id/next"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_weight="1"
-        android:background="@drawable/button_style"
         android:src="@android:drawable/ic_media_ff" />
+    <!--android:background="@drawable/button_style"-->
 
     <ImageButton
         android:id="@+id/close"
@@ -92,8 +92,8 @@
         android:layout_height="40dp"
         android:layout_marginLeft="5dp"
         android:layout_weight="1"
-        android:background="@drawable/button_style"
         android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    <!--android:background="@drawable/button_style"-->
 
 </LinearLayout>
 
