@@ -16,7 +16,7 @@ import android.util.Base64;
 
 import android.util.Log;
 //import android.R;
-import com.phonegap.helloworld.R;
+import com.rohdeschwarz.podcast.R;
 import android.content.Context;
 import android.app.Activity;
 import android.app.Notification;
