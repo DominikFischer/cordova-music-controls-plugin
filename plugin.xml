@@ -44,8 +44,6 @@
 		
 		<source-file src="res/layout/notification.xml" target-dir="res/layout" />
 		<source-file src="res/layout/notification_big.xml" target-dir="res/layout" />
-		<source-file src="res/layout/notification_big_singletrack.xml" target-dir="res/layout" />
-		<source-file src="res/layout/notification_singletrack.xml" target-dir="res/layout" />
 		
 		<source-file src="res/drawable-hdpi/notification_icon.png" target-dir="res/drawable-hdpi" />
 		<source-file src="res/drawable-ldpi/notification_icon.png" target-dir="res/drawable-ldpi" />
