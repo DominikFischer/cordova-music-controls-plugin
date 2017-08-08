@@ -16,7 +16,7 @@ import android.util.Base64;
 
 import android.util.Log;
 //import android.R;
-import com.rohdeschwarz.podcast.R;
+import com.phonegap.helloworld.R;
 import android.content.Context;
 import android.app.Activity;
 import android.app.Notification;
@@ -215,9 +215,9 @@ public class MusicControlsNotification {
 			Intent pauseIntent = new Intent("music-controls-pause");
 			PendingIntent pausePendingIntent = PendingIntent.getBroadcast(context, 1, pauseIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_pause, "", pausePendingIntent);
-			notificationView.setImageViewResource(R.id.play_pause, R.drawable.pause_xhdpi);
+			notificationView.setImageViewResource(R.id.play_pause, android.R.drawable.ic_media_pause);
 			notificationView.setOnClickPendingIntent(R.id.play_pause, pausePendingIntent);
-			notificationBigView.setImageViewResource(R.id.play_pause, R.drawable.pause_xhdpi);
+			notificationBigView.setImageViewResource(R.id.play_pause, android.R.drawable.ic_media_pause);
 			notificationBigView.setOnClickPendingIntent(R.id.play_pause, pausePendingIntent);
 		} else {
 			/* Play  */
@@ -225,9 +225,9 @@ public class MusicControlsNotification {
 			Intent playIntent = new Intent("music-controls-play");
 			PendingIntent playPendingIntent = PendingIntent.getBroadcast(context, 1, playIntent, 0);
 			builder.addAction(android.R.drawable.ic_media_play, "", playPendingIntent);
-			notificationView.setImageViewResource(R.id.play_pause, R.drawable.play_xhdpi);
+			notificationView.setImageViewResource(R.id.play_pause,  android.R.drawable.ic_media_play);
 			notificationView.setOnClickPendingIntent(R.id.play_pause, playPendingIntent);
-			notificationBigView.setImageViewResource(R.id.play_pause, R.drawable.play_xhdpi);
+			notificationBigView.setImageViewResource(R.id.play_pause, android.R.drawable.ic_media_play);
 			notificationBigView.setOnClickPendingIntent(R.id.play_pause, playPendingIntent);
 		}
 		/* Next */
