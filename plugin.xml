@@ -49,7 +49,7 @@
 		<source-file src="res/drawable-ldpi/notification_icon.png" target-dir="res/drawable-ldpi" />
 		<source-file src="res/drawable-mdpi/notification_icon.png" target-dir="res/drawable-mdpi" />
 		<source-file src="res/drawable-xxhdpi/notification_icon.png" target-dir="res/drawable-xxhdpi" />
-		
+		<source-file src="res/drawable-hdpi/button_style.xml" target-dir="res/drawable-hdpi" />
 		
     </platform>
 
